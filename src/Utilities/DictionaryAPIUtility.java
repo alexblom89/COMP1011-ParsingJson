@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class DictionaryAPIUtility {
 
     public static void getWordFromSearch(String searchText) throws IOException, InterruptedException {
-        String searchURL = "https://wordsapiv1.p.rapidapi.com/words/*" + searchText + "*";
+        String searchURL = "https://wordsapiv1.p.rapidapi.com/words/" + searchText;
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(searchURL))
@@ -19,6 +19,8 @@ public class DictionaryAPIUtility {
                 .header("x-rapidapi-host", "wordsapiv1.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
-        HttpResponse<Path> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("./src/JSONFiles/wordFiles.json")));
+        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        //System.out.println(response.body());
+
     }
 }

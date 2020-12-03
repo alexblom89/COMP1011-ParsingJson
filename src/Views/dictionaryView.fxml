@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="597.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DictionaryViewController">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutY="-3.0" prefHeight="597.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <StackPane>
+               <children>
+                  <Label text="Dictionary Search" />
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <Label text="Enter Word:" />
+                  <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="225.0" />
+                  <Button mnemonicParsing="false" text="Search!" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label text="Part of Speech:" />
+                  <TextField fx:id="partOfSpeechTextField" prefHeight="25.0" prefWidth="144.0" />
+               </children>
+            </HBox>
+            <Label text="Definition">
+               <VBox.margin>
+                  <Insets bottom="-15.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="definitionTextArea" prefHeight="121.0" prefWidth="346.0" />
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Synonyms" />
+                        <ListView fx:id="synonymsListView" prefHeight="200.0" prefWidth="275.0" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Examples" />
+                        <TextArea fx:id="examplesTextArea" prefHeight="200.0" prefWidth="275.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
