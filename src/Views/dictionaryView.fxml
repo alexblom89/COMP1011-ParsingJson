@@ -25,7 +25,7 @@
                <children>
                   <Label text="Enter Word:" />
                   <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="225.0" />
-                  <Button mnemonicParsing="false" text="Search!" />
+                  <Button mnemonicParsing="false" onAction="#getWordContent" text="Search!" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -33,16 +33,19 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
-                  <Label text="Part of Speech:" />
-                  <TextField fx:id="partOfSpeechTextField" prefHeight="25.0" prefWidth="144.0" />
+                  <Label fx:id="partOfSpeechLabel" text="Part of Speech:" />
                </children>
             </HBox>
-            <Label text="Definition">
+            <HBox spacing="20.0">
                <VBox.margin>
                   <Insets bottom="-15.0" />
                </VBox.margin>
-            </Label>
-            <TextArea fx:id="definitionTextArea" prefHeight="121.0" prefWidth="346.0" />
+               <children>
+                  <Label fx:id="definitionTextAreaLabel" text="Definition" />
+                  <Button id="nextPageButton" fx:id="pageButton" mnemonicParsing="false" onAction="#nextPage" text="Next Definition" />
+               </children>
+            </HBox>
+            <TextArea fx:id="definitionTextArea" editable="false" prefHeight="121.0" prefWidth="346.0" wrapText="true" />
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
                   <VBox spacing="5.0">
@@ -54,7 +57,7 @@
                   <VBox spacing="5.0">
                      <children>
                         <Label text="Examples" />
-                        <TextArea fx:id="examplesTextArea" prefHeight="200.0" prefWidth="275.0" />
+                        <TextArea fx:id="examplesTextArea" prefHeight="200.0" prefWidth="275.0" wrapText="true" />
                      </children>
                   </VBox>
                </children>

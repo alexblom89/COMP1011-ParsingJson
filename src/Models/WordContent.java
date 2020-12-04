@@ -1,5 +1,9 @@
 package Models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+
 public class WordContent {
     private String definition;
     private String partOfSpeech;
@@ -14,7 +18,7 @@ public class WordContent {
     }
 
     public String getDefinition() {
-        return definition;
+        return Objects.requireNonNullElse(definition, "Definition not found");
     }
 
     public void setDefinition(String definition) {
@@ -22,23 +26,37 @@ public class WordContent {
     }
 
     public String getPartOfSpeech() {
-        return partOfSpeech;
+        return Objects.requireNonNullElse(partOfSpeech, "Not found");
     }
 
     public void setPartOfSpeech(String partOfSpeech) {
         this.partOfSpeech = partOfSpeech;
     }
 
-    public String[] getSynonyms() {
-        return synonyms;
+    public ArrayList<String> getSynonyms() {
+        ArrayList<String> synonymsList = new ArrayList<>();
+        if (synonyms != null)
+            synonymsList.addAll(Arrays.asList(synonyms));
+        else
+            synonymsList.add("No synonyms found.");
+        return synonymsList;
     }
 
     public void setSynonyms(String[] synonyms) {
         this.synonyms = synonyms;
     }
 
-    public String[] getExamples() {
-        return examples;
+    public String getExamples() {
+        if (examples == null)
+           return "No examples found.";
+        else if (examples.length > 1)
+        {
+            for (String s : examples)
+            {
+                return String.format("%s%n", s);
+            }
+        }
+        return examples[0];
     }
 
     public void setExamples(String[] examples) {
