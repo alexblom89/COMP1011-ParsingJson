@@ -28,15 +28,15 @@
                <children>
                   <Label text="Enter Word:" />
                   <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="225.0" />
-                  <Button mnemonicParsing="false" onAction="#getWordContent" text="Search!" />
+                  <Button id="searchButton" fx:id="searchButton" mnemonicParsing="false" onAction="#getWordContent" />
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="-10.0" />
                </VBox.margin>
             </HBox>
             <StackPane>
                <children>
-                  <Label fx:id="errorLabel" />
+                  <Label id="errorLabel" fx:id="errorLabel" />
                </children>
             </StackPane>
             <HBox alignment="CENTER_LEFT" spacing="20.0">

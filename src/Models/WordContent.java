@@ -17,6 +17,10 @@ public class WordContent {
         setExamples(examples);
     }
 
+    /**
+     * If definition is null, display error string.
+     * @return
+     */
     public String getDefinition() {
         return Objects.requireNonNullElse(definition, "Definition not found.");
     }
@@ -25,6 +29,10 @@ public class WordContent {
         this.definition = definition;
     }
 
+    /**
+     * If partOfSpeech is null, display error string.
+     * @return
+     */
     public String getPartOfSpeech() {
         return Objects.requireNonNullElse(partOfSpeech, "Not found.");
     }
@@ -33,6 +41,10 @@ public class WordContent {
         this.partOfSpeech = partOfSpeech;
     }
 
+    /**
+     * Return an ArrayList of synonyms. If synonym array is null, throw exception.
+     * @return
+     */
     public ArrayList<String> getSynonyms() {
         ArrayList<String> synonymsList = new ArrayList<>();
         if (synonyms != null)
@@ -46,6 +58,11 @@ public class WordContent {
         this.synonyms = synonyms;
     }
 
+    /**
+     * If there is one example, return it. If there are more than one, return each string in array with a new line
+     * character so that textarea can be used (textarea already has text-wrapping). If null, throw exception.
+     * @return
+     */
     public String getExamples() {
         if (examples == null)
            return "No examples found.";

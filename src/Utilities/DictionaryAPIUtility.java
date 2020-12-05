@@ -17,20 +17,23 @@ import java.util.Arrays;
 
 public class DictionaryAPIUtility {
 
+    /**
+     * Build search URL from text entered in search field. Send HTTP request containing search url,
+     * write JSON response to file.
+     * @param searchText
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static void getWordFromSearch(String searchText) throws IOException, InterruptedException {
         Gson gson = new Gson();
         String searchURL = "https://wordsapiv1.p.rapidapi.com/words/" + searchText;
 
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(searchURL))
-                    .header("x-rapidapi-key", "3fe8312e84mshbade5e19de86673p182f9cjsn4659958f908e")
-                    .header("x-rapidapi-host", "wordsapiv1.p.rapidapi.com")
-                    .method("GET", HttpRequest.BodyPublishers.noBody())
-                    .build();
-            HttpResponse<Path> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("./src/JSONFiles/wordFiles.json")));
-        } catch (IOException | IllegalArgumentException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(searchURL))
+                .header("x-rapidapi-key", "3fe8312e84mshbade5e19de86673p182f9cjsn4659958f908e")
+                .header("x-rapidapi-host", "wordsapiv1.p.rapidapi.com")
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<Path> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("./src/JSONFiles/wordFiles.json")));
     }
 }

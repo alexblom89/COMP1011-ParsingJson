@@ -20,6 +20,10 @@ public class SearchResult {
         return word;
     }
 
+    /**
+     * If the word is null, the search field was left empty - throw exception. Otherwise, set word.
+     * @param word
+     */
     public void setWord(String word) {
         if (word.isBlank() || word.isEmpty())
             throw new IllegalArgumentException("Search field cannot be empty!");

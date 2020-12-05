@@ -14,6 +14,11 @@ import java.util.Arrays;
 
 public class JSONFileUtility {
 
+    /**
+     * Read json file created from HTTP response. If results are valid, store in ArrayList.
+     * @param jsonFileName
+     * @return ArrayList of WordContent objects.
+     */
     public static ArrayList<WordContent> getWordContentList(String jsonFileName)
     {
         ArrayList<WordContent> contents = new ArrayList<>();

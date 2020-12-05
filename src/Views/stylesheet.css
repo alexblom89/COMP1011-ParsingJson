@@ -12,6 +12,10 @@
     -fx-background-color: transparent;
 }
 
+#searchButton {
+    -fx-background-color: transparent;
+}
+
 .text-area {
     -fx-control-inner-background: #b8d4e3;
     -fx-background-radius: 10px;
@@ -20,4 +24,8 @@
 
 .list-view {
     -fx-control-inner-background: #b8d4e3;
+}
+
+#errorLabel {
+    -fx-text-fill: red;
 }
