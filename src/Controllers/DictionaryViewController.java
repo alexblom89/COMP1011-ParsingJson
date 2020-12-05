@@ -6,15 +6,13 @@ import Utilities.JSONFileUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class DictionaryViewController implements Initializable {
 
@@ -31,12 +29,19 @@ public class DictionaryViewController implements Initializable {
     private ListView<String> synonymsListView;
 
     @FXML
-    private Button pageButton;
+    private Button nextPageButton;
+
+    @FXML
+    private Button previousPageButton;
 
     @FXML
     private Label definitionTextAreaLabel;
 
-    @FXML Label partOfSpeechLabel;
+    @FXML
+    private Label partOfSpeechLabel;
+
+    @FXML
+    private Label errorLabel;
 
     private ArrayList<WordContent> contents = new ArrayList<>();
 
@@ -44,7 +49,19 @@ public class DictionaryViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        pageButton.setVisible(false);
+        nextPageButton.setVisible(false);
+        previousPageButton.setVisible(false);
+        //Icons made by Catalin Fertu from https://www.flaticon.com/authors/catalin-fertu
+        Image next = new Image("Icons/right-arrow-angle.png");
+        Image prev = new Image("Icons/left-arrow-line-symbol.png");
+        ImageView nextView = new ImageView(next);
+        ImageView prevView = new ImageView(prev);
+        nextView.setFitHeight(30);
+        nextView.setPreserveRatio(true);
+        prevView.setFitHeight(30);
+        prevView.setPreserveRatio(true);
+        nextPageButton.setGraphic(nextView);
+        previousPageButton.setGraphic(prevView);
     }
 
     @FXML
@@ -54,10 +71,13 @@ public class DictionaryViewController implements Initializable {
         definitionTextArea.clear();
         examplesTextArea.clear();
         synonymsListView.getItems().clear();
-        pageButton.setDisable(false);
+        errorLabel.setText("");
+        nextPageButton.setDisable(false);
 
         try {
             String word = searchTextField.getText();
+            if(word.isEmpty() || word.isBlank())
+                throw new IllegalArgumentException("Search field cannot be blank!");
             word = word.replace(" ", "%20");
 
             DictionaryAPIUtility.getWordFromSearch(word);
@@ -65,16 +85,17 @@ public class DictionaryViewController implements Initializable {
 
             updateScene(contents, pageCounter);
 
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | IOException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            errorLabel.setText(e.getMessage());
         }
     }
 
     @FXML
     public void nextPage()
     {
+        previousPageButton.setDisable(false);
         if(pageCounter < contents.size())
         {
             pageCounter++;
@@ -82,13 +103,28 @@ public class DictionaryViewController implements Initializable {
         }
     }
 
+    @FXML
+    public void previousPage()
+    {
+        nextPageButton.setDisable(false);
+        if(pageCounter > 1)
+        {
+            pageCounter--;
+            updateScene(contents, pageCounter);
+        }
+    }
+
     private void updateScene(ArrayList<WordContent> contents, int pageNum)
     {
         if (pageCounter == contents.size())
-            pageButton.setDisable(true);
+            nextPageButton.setDisable(true);
+        if (pageCounter == 1)
+            previousPageButton.setDisable(true);
+
         if (contents.size() > 1)
         {
-            pageButton.setVisible(true);
+            previousPageButton.setVisible(true);
+            nextPageButton.setVisible(true);
             definitionTextAreaLabel.setText("Definition " + pageNum + " of " + contents.size());
         }
         definitionTextArea.clear();

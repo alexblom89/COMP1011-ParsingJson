@@ -18,7 +18,7 @@ public class WordContent {
     }
 
     public String getDefinition() {
-        return Objects.requireNonNullElse(definition, "Definition not found");
+        return Objects.requireNonNullElse(definition, "Definition not found.");
     }
 
     public void setDefinition(String definition) {
@@ -26,7 +26,7 @@ public class WordContent {
     }
 
     public String getPartOfSpeech() {
-        return Objects.requireNonNullElse(partOfSpeech, "Not found");
+        return Objects.requireNonNullElse(partOfSpeech, "Not found.");
     }
 
     public void setPartOfSpeech(String partOfSpeech) {

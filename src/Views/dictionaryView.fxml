@@ -10,15 +10,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="597.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DictionaryViewController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DictionaryViewController">
    <children>
       <VBox alignment="CENTER_LEFT" layoutY="-3.0" prefHeight="597.0" prefWidth="600.0" spacing="20.0">
          <children>
             <StackPane>
                <children>
-                  <Label text="Dictionary Search" />
+                  <Label text="Dictionary Search">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
                </children>
             </StackPane>
             <HBox alignment="CENTER" spacing="20.0">
@@ -28,24 +31,33 @@
                   <Button mnemonicParsing="false" onAction="#getWordContent" text="Search!" />
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
+            <StackPane>
+               <children>
+                  <Label fx:id="errorLabel" />
+               </children>
+            </StackPane>
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
                   <Label fx:id="partOfSpeechLabel" text="Part of Speech:" />
                </children>
             </HBox>
-            <HBox spacing="20.0">
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
                <VBox.margin>
                   <Insets bottom="-15.0" />
                </VBox.margin>
                <children>
                   <Label fx:id="definitionTextAreaLabel" text="Definition" />
-                  <Button id="nextPageButton" fx:id="pageButton" mnemonicParsing="false" onAction="#nextPage" text="Next Definition" />
+                  <Button id="previousPageButton" fx:id="previousPageButton" mnemonicParsing="false" onAction="#previousPage" prefHeight="50.0" prefWidth="50.0" styleClass="scrollButtons" />
+                  <Button id="nextPageButton" fx:id="nextPageButton" mnemonicParsing="false" onAction="#nextPage" prefHeight="50.0" prefWidth="50.0" styleClass="scrollButtons" stylesheets="@stylesheet.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></Button>
                </children>
             </HBox>
-            <TextArea fx:id="definitionTextArea" editable="false" prefHeight="121.0" prefWidth="346.0" wrapText="true" />
+            <TextArea fx:id="definitionTextArea" editable="false" prefHeight="121.0" prefWidth="346.0" styleClass="text-area" wrapText="true" />
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
                   <VBox spacing="5.0">
@@ -57,7 +69,7 @@
                   <VBox spacing="5.0">
                      <children>
                         <Label text="Examples" />
-                        <TextArea fx:id="examplesTextArea" prefHeight="200.0" prefWidth="275.0" wrapText="true" />
+                        <TextArea fx:id="examplesTextArea" prefHeight="200.0" prefWidth="275.0" styleClass="text-area" wrapText="true" />
                      </children>
                   </VBox>
                </children>

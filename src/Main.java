@@ -13,6 +13,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("./Views/dictionaryView.fxml"));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap");
         stage.setScene(scene);
         stage.show();
     }

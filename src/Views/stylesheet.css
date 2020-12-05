@@ -1,0 +1,23 @@
+.root {
+    -fx-background-color: linear-gradient(from 10px 10px to 600px 600px, #855a5c, #66101F);
+    -fx-font-family: Montserrat;
+    -fx-font-size: 14pt;
+}
+
+.label {
+    -fx-text-fill: #eeffdb;
+}
+
+.scrollButtons {
+    -fx-background-color: transparent;
+}
+
+.text-area {
+    -fx-control-inner-background: #b8d4e3;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 20px;
+}
+
+.list-view {
+    -fx-control-inner-background: #b8d4e3;
+}

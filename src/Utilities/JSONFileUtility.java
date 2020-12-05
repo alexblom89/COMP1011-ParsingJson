@@ -24,7 +24,10 @@ public class JSONFileUtility {
                 JsonReader jsonReader = new JsonReader(fileReader);
         ) {
             SearchResult searchResult = gson.fromJson(jsonReader, SearchResult.class);
-            contents.addAll(Arrays.asList(searchResult.getContents()));
+            if (searchResult.getWord() != null)
+                contents.addAll(Arrays.asList(searchResult.getContents()));
+            else
+                throw new IllegalArgumentException("Cannot find word!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -21,7 +21,10 @@ public class SearchResult {
     }
 
     public void setWord(String word) {
-        this.word = word;
+        if (word.isBlank() || word.isEmpty())
+            throw new IllegalArgumentException("Search field cannot be empty!");
+        else
+            this.word = word;
     }
 
     public WordContent[] getContents() {

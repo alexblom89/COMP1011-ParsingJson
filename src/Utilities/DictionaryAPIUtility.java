@@ -21,12 +21,16 @@ public class DictionaryAPIUtility {
         Gson gson = new Gson();
         String searchURL = "https://wordsapiv1.p.rapidapi.com/words/" + searchText;
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(searchURL))
-                .header("x-rapidapi-key", "3fe8312e84mshbade5e19de86673p182f9cjsn4659958f908e")
-                .header("x-rapidapi-host", "wordsapiv1.p.rapidapi.com")
-                .method("GET", HttpRequest.BodyPublishers.noBody())
-                .build();
-        HttpResponse<Path> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("./src/JSONFiles/wordFiles.json")));
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(searchURL))
+                    .header("x-rapidapi-key", "3fe8312e84mshbade5e19de86673p182f9cjsn4659958f908e")
+                    .header("x-rapidapi-host", "wordsapiv1.p.rapidapi.com")
+                    .method("GET", HttpRequest.BodyPublishers.noBody())
+                    .build();
+            HttpResponse<Path> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("./src/JSONFiles/wordFiles.json")));
+        } catch (IOException | IllegalArgumentException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
