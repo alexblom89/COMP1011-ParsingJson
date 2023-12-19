@@ -1,4 +1,5 @@
-# COMP1011 Advanced OOP using Java Assignment 2
+# COMP1011 Advanced OOP using Java
+## Assignment 2
 
 The purpose of this assignment is to create an interactive application using the JavaFX library that will allow users to read information from a JSON file.
 
